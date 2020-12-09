@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html>
+<!--T
+References
+1.	Convert flat JSON file to hierarchical json data like flare.json [d3 example file]. (n.d.). Retrieved January 12, 2017, from http://stackoverflow.com/questions/19317115/convert-flat-json-file-to-hierarchical-json-data-like-flare-json-d3-example-fil
+2.	Bostock’s, M. (2016, December 21). Sunburst Partition. Retrieved January 12, 2017, from http://bl.ocks.org/mbostock/4063423
+3.	Davies , J. (n.d.). Coffee Flavour Wheel. Retrieved January 12, 2017, from https://www.jasondavies.com/coffee-wheel/
+-->
+
+
+<head>    
+<meta charset="utf-8">
+        <title>XY DV</title>
+     <script src="https://d3js.org/d3.v3.min.js"></script>
+     <link href="style.css" rel="stylesheet">
+</head>
+ 
+<body>
+
+<script>
+	function displayQuestion(answer) {
+		document.getElementById(answer + 'Option').style.display = "block";
+		if (answer == "jc") { // hide the div that is not selected
+			document.getElementById('polyOption').style.display = "none";
+			document.getElementById('othersOption').style.display = "none";
+		} else if (answer == "poly") {
+			document.getElementById('jcOption').style.display = "none";
+			document.getElementById('othersOption').style.display = "none";
+		} else if (answer == "others") {
+			document.getElementById('jcOption').style.display = "none";
+			document.getElementById('polyOption').style.display = "none";
+		}
+	}
+</script>
+
+<form name="Filter" action="javascript:void(0)">
+   <label><input type="radio" id="jc" name="enrol" value="jc" onchange="displayQuestion(this.value)" />JC</label>
+   <label><input type="radio" id="poly" name="enrol" value="poly" onchange="displayQuestion(this.value)" />Poly</label>
+   <label><input type="radio" id="others" name="enrol" value="others" onchange="displayQuestion(this.value)" />Others</label>
+   
+   <div id="jcOption" style="display:none;">
+   <label>JC COP: </label><input type="text" id="jFilter" placeholder="Enter your UAT">
+   <br />
+   <label><input type="radio" name="path" value="arts">Arts</label>
+   <label><input type="radio" name="path" value="science">Science</label>
+   <label><input type="radio" name="path" value="both">Both</label>
+   </div>
+   
+   <div id="polyOption" style="display:none;">
+   <label>Poly COP: </label><input type="text" id="pFilter" placeholder="Enter your COP">
+   </div>
+   
+   <div id="othersOption" style="display:none;">
+   <label>Working Experienec: </label><input type="text" id="wFilter" placeholder="Enter your Working Experience">
+   </div>
+   <br />
+   <button type="submit" form="form1" onclick="doSomething()" value="Search">Search</button>
+</form>
+
+<script>
+var width = 1500,
+    height = 900,
+    radius = Math.min(width, height) / 2 ;
+
+var x = d3.scale.linear()
+    .range([0, 2 * Math.PI]);
+
+var y = d3.scale.pow().exponent(1.3).domain([0, 1]).range([0, radius]);
+
+var color = d3.scale.category20c();
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width )
+    .attr("height", height )
+	.append("g")
+    .attr("transform", "translate(" + width / 2 + "," + (height / 2 + 10) + ")");
+
+var partition = d3.layout.partition()
+    .value(function(d) { return 1; });
+
+	var arc = d3.svg.arc()
+    .startAngle(function(d) { return Math.max(0, Math.min(2 * Math.PI, x(d.x))); })
+    .endAngle(function(d) { return Math.max(0, Math.min(2 * Math.PI, x(d.x + d.dx))); })
+    .innerRadius(function(d) { return Math.max(0, y(d.y)); })
+    .outerRadius(function(d) { return Math.max(0, y(d.y + d.dy)  ) ; });
+	
+var tooltip = d3.select("body")
+    .append("div")
+    .style("position", "absolute")
+    .style("z-index", "10")
+    .style("visibility", "hidden")
+    .style("background", "#FFFFFF")
+     .style("right", "10px")
+	 .style("top", "10px")
+///
+function doSomething()
+{   
+svg.selectAll("*").remove();
+if (d3.select('input[name="enrol"]:checked').node().value == "poly") 
+{
+
+ var pFilter = 0
+if(!document.getElementById("pFilter").value.match(/\S/)) { pFilter = 4}
+else {pFilter = document.getElementById("pFilter").value}
+
+
+///IMPORT DATA and change data into hierarcial data///
+ d3.json("DVtest.json", function(data)
+ {
+
+	testData = []
+	data.forEach(function(d){
+	if ( (d.polyCOP != "N/A") && (d.polyCOP <= pFilter)   &&  (d.polyCOP != "#"  ))
+	{testData.push(d)}
+	});	
+	var newData = { name :" ", children : [] },
+    levels = ["University","Faculty", "Course"];
+	
+	// For each data row, loop through the expected levels traversing the output tree
+	testData.forEach(function(d){
+	
+    // Keep this as a reference to the current level
+    var depthCursor = newData.children;
+    // Go down one level at a time
+    levels.forEach(function( property, depth ){
+
+        // Look to see if a branch has already been created
+        var index;
+        depthCursor.forEach(function(child,i){
+            if ( d[property] == child.name ) index = i;
+        });
+        // Add a branch if it isn't there
+        if ( isNaN(index) ) {
+            depthCursor.push({ name : d[property], children : []});
+            index = depthCursor.length - 1;
+        }
+        // Now reference the new child array as we go deeper into the tree
+        depthCursor = depthCursor[index].children;
+        // This is a leaf, so add the last element to the specified branch
+        if ( depth === levels.length - 1 ) depthCursor.push({ name : "COP =" + d.polyCOP, test: "Course Fees =" + d.CourseFees, test2:"Intake =" + d.Intake, test3:"Interview =" +d.requireInterview});
+    });
+});
+
+///
+  var g = svg.selectAll("g")
+      .data(partition.nodes(newData))
+    .enter().append("g");
+
+  var path = g.append("path")
+    .attr("d", arc)
+    .style("fill", function(d) { return color((d.children ? d : d.parent).name); })
+    .on("click", click);
+	
+
+  var text = g.append("text")
+    .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")rotate(" + computeTextRotation(d) + ")"; })
+    .attr('text-anchor', function (d) { return computeTextRotation(d) > 180 ? "end" : "start"; })
+	.attr("dx", "6") // margin
+    .attr("dy", ".35em") // vertical-align;
+  
+	 .on(
+		 "mouseover", function(d)
+		 {
+			 if (d.test != null) 
+			 {
+				 tooltip.text(d.test +"   " + d.test2 + " " + d.test3); return tooltip.style("visibility", "visible")
+			 }
+			 
+		
+		 }
+	 )
+	
+ 
+ 
+	 .on("mousemove", function(){return tooltip.style("top", (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");})
+      .on("mouseout", function(){return tooltip.style("visibility", "hidden");});
+
+	  text.append("tspan")
+      .attr("x", 0)
+      .text(function(d) { return d.depth ? d.name.split(" ")[0] : ""; });
+  text.append("tspan")
+      .attr("x", 0)
+      .attr("dy", "1em")
+      .text(function(d) { return d.depth ? d.name.split(" ")[1] || "" : ""; });
+	text.append("tspan")
+      .attr("x", 0)
+      .attr("dy", "1em")
+      .text(function(d) { return d.depth ? d.name.split(" ")[2] || "" : ""; });
+	
+	
+  function click(d) {
+    // fade out all text elements
+    text.transition().attr("opacity", 0);
+
+    path.transition()
+      .duration(750)
+      .attrTween("d", arcTween(d))
+      .each("end", function(e, i) {
+          // check if the animated element's data e lies within the visible angle span given in d
+          if (e.x >= d.x && e.x < (d.x + d.dx)) {
+            // get a selection of the associated text element
+            var arcText = d3.select(this.parentNode).select("text");
+            // fade in the text element and recalculate positions
+            arcText.transition().duration(750)
+              .attr("opacity", 1)
+               .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")rotate(" + computeTextRotation(d) + ")"; })
+              .attr("x", function(d) { return y(d.y); });
+          }
+      });
+  }
+
+ 
+  
+  
+d3.select(self.frameElement).style("height", height + "px");
+
+// Interpolate the scales!
+function arcTween(d) {
+  var xd = d3.interpolate(x.domain(), [d.x, d.x + d.dx]),
+      yd = d3.interpolate(y.domain(), [d.y, 1]),
+      yr = d3.interpolate(y.range(), [d.y ? 20 : 0, radius]);
+  return function(d, i) {
+    return i
+        ? function(t) { return arc(d); }
+        : function(t) { x.domain(xd(t)); y.domain(yd(t)).range(yr(t)); return arc(d); };
+  };
+}
+
+   function computeTextRotation(d) {
+        var ang = (x(d.x + d.dx / 2) - Math.PI / 2) / Math.PI * 180;
+        return (ang > 90) ? 180 + ang : ang;
+    }
+///
+});
+}
+else if (d3.select('input[name="enrol"]:checked').node().value == "jc")
+{
+var jFilter = []
+if(!document.getElementById("jFilter").value.match(/\S/)) { jFilter = "AAA/A"}
+else {jFilter = document.getElementById("jFilter").value}
+///IMPORT DATA and change data into hierarcial data///
+ d3.json("DVtest.json", function(data)
+ {
+
+	testData = []
+	data.forEach(function(d){
+	var UserInPut =[];
+	var UserInputz =0;
+	var filter = [];
+	var filterZ = 0;
+	var First = d.jcCOP.split("");
+	var Second = jFilter.split("");
+	
+	
+	for ( var i = 0; i < 3; i++) 
+	{ if (First[i] == "A") {filter.push(1)}
+	else if (First[i] == "B") {filter.push(2)}
+	else if (First[i] == "C") {filter.push(3)}
+	else  {filter.push(4)} 
+	}
+	
+	if (First[4] == "A") {filterZ += 1}
+	else if (First[4] == "B") {filterZ += 2}
+	else if (First[4] == "C") {filterZ += 3}
+	else {filterZ += 4}
+	
+	for ( var i = 0; i < 3; i++) 
+	{ if (Second[i] == "A") {UserInPut.push(1)}
+	else if (Second[i] == "B") {UserInPut.push(2)}
+	else if (Second[i] == "C") {UserInPut.push(3)}
+	else  {UserInPut.push(4)} }
+	
+	
+	if (Second[4] == "A") {UserInputz += 1}
+	else if (Second[4] == "B") {UserInputz += 2}
+	else if (Second[4] == "C") {UserInputz += 3}
+	else {UserInputz += 4}
+	
+	console.log(UserInputz)
+	console.log(UserInPut)
+	console.log(filter)
+	
+
+	if  (( d.jcCOP != "N/A") && (filter[0] >= UserInPut[0]) && (filter[1] >= UserInPut[1]) && (filter[2] >= UserInPut[2]) && (filterZ >= UserInputz))
+	{testData.push(d)}
+	});
+	
+	finalData = []
+	testData.forEach(function(d){
+	if(d3.select('input[name="path"]:checked').node().value == "arts")
+		{
+		if( (d.CourseType == "Arts") || (d.CourseType == "Both" )  ){finalData.push(d)}
+		else {;} }
+			
+	else if (d3.select('input[name="path"]:checked').node().value == "science")
+	{
+	if ((d.CourseType == "Science") || (d.CourseType == "Both") )  
+	{finalData.push(d)} 
+	else {;}
+	}
+	
+	
+	
+	else{finalData.push(d)}
+	})
+	
+	
+	var newData = { name :"root", children : [] },
+    levels = ["University","Faculty", "Course"];
+	
+	// For each data row, loop through the expected levels traversing the output tree
+	finalData.forEach(function(d){
+    // Keep this as a reference to the current level
+    var depthCursor = newData.children;
+    // Go down one level at a time
+    levels.forEach(function( property, depth ){
+
+        // Look to see if a branch has already been created
+        var index;
+        depthCursor.forEach(function(child,i){
+            if ( d[property] == child.name ) index = i;
+        });
+        // Add a branch if it isn't there
+        if ( isNaN(index) ) {
+            depthCursor.push({ name : d[property], children : []});
+            index = depthCursor.length - 1;
+        }
+        // Now reference the new child array as we go deeper into the tree
+        depthCursor = depthCursor[index].children;
+        // This is a leaf, so add the last element to the specified branch
+        if ( depth === levels.length - 1 ) depthCursor.push({ name :  "COP= " + d.jcCOP, test: "Course Fees =" + d.CourseFees, test2:"Intake =" + d.Intake});
+    });
+});
+///
+  var g = svg.selectAll("g")
+      .data(partition.nodes(newData))
+    .enter().append("g");
+
+  var path = g.append("path")
+    .attr("d", arc)
+    .style("fill", function(d) { return color((d.children ? d : d.parent).name); })
+    .on("click", click);
+
+  var text = g.append("text")
+    .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")rotate(" + computeTextRotation(d) + ")"; })
+    .attr('text-anchor', function (d) { return computeTextRotation(d) > 180 ? "end" : "start"; })
+	.attr("dx", "6") // margin
+    .attr("dy", ".35em") // vertical-align;
+	 .on("mouseover", function(d){
+		 if (d.test != null) 
+			 {
+				 tooltip.text(d.test +"   " + d.test2); return tooltip.style("visibility", "visible")
+			 };})
+	 .on("mousemove", function(){return tooltip.style("top", (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");})
+      .on("mouseout", function(){return tooltip.style("visibility", "hidden");});
+
+
+
+	  text.append("tspan")
+      .attr("x", 0)
+      .text(function(d) { return d.depth ? d.name.split(" ")[0] : ""; });
+  text.append("tspan")
+      .attr("x", 0)
+      .attr("dy", "1em")
+      .text(function(d) { return d.depth ? d.name.split(" ")[1] || "" : ""; });
+	text.append("tspan")
+      .attr("x", 0)
+      .attr("dy", "1em")
+      .text(function(d) { return d.depth ? d.name.split(" ")[2] || "" : ""; });
+	  
+	
+	
+  function click(d) {
+    // fade out all text elements
+    text.transition().attr("opacity", 0);
+
+    path.transition()
+      .duration(750)
+      .attrTween("d", arcTween(d))
+      .each("end", function(e, i) {
+          // check if the animated element's data e lies within the visible angle span given in d
+          if (e.x >= d.x && e.x < (d.x + d.dx)) {
+            // get a selection of the associated text element
+            var arcText = d3.select(this.parentNode).select("text");
+            // fade in the text element and recalculate positions
+            arcText.transition().duration(750)
+              .attr("opacity", 1)
+               .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")rotate(" + computeTextRotation(d) + ")"; })
+              .attr("x", function(d) { return y(d.y); });
+          }
+      });
+  }
+
+d3.select(self.frameElement).style("height", height + "px");
+
+// Interpolate the scales!
+function arcTween(d) {
+  var xd = d3.interpolate(x.domain(), [d.x, d.x + d.dx]),
+      yd = d3.interpolate(y.domain(), [d.y, 1]),
+      yr = d3.interpolate(y.range(), [d.y ? 20 : 0, radius]);
+  return function(d, i) {
+    return i
+        ? function(t) { return arc(d); }
+        : function(t) { x.domain(xd(t)); y.domain(yd(t)).range(yr(t)); return arc(d); };
+  };
+}
+
+   function computeTextRotation(d) {
+        var ang = (x(d.x + d.dx / 2) - Math.PI / 2) / Math.PI * 180;
+        return (ang > 90) ? 180 + ang : ang;
+    }
+///
+});
+}
+else 
+{
+///IMPORT DATA and change data into hierarcial data///
+ d3.json("DVtest.json", function(data)
+ {
+	var wFilter = 0
+if(!document.getElementById("wFilter").value.match(/\S/)) { wFilter = 2}
+else {wFilter = document.getElementById("wFilter").value}
+
+	
+	
+	testData = []
+	data.forEach(function(d){
+	if ( (d.WorkExperience != "N/A") && (d.WorkExperience <= wFilter ))
+	{testData.push(d);}
+	});
+	
+	var newData = { name :"root", children : [] },
+    levels = ["University","Faculty", "Course"];
+	
+	// For each data row, loop through the expected levels traversing the output tree
+	testData.forEach(function(d){
+    // Keep this as a reference to the current level
+    var depthCursor = newData.children;
+    // Go down one level at a time
+    levels.forEach(function( property, depth ){
+
+        // Look to see if a branch has already been created
+        var index;
+        depthCursor.forEach(function(child,i){
+            if ( d[property] == child.name ) index = i;
+        });
+        // Add a branch if it isn't there
+        if ( isNaN(index) ) {
+            depthCursor.push({ name : d[property], children : []});
+            index = depthCursor.length - 1;
+        }
+        // Now reference the new child array as we go deeper into the tree
+        depthCursor = depthCursor[index].children;
+        // This is a leaf, so add the last element to the specified branch
+        if ( depth === levels.length - 1 ) depthCursor.push({ name: "WorkExp= " + d.WorkExperience,  test: "Course Fees=" + d.CourseFees, test2:"Qualification=" + d.Qualificationrequired });
+     });
+});
+///
+  var g = svg.selectAll("g")
+      .data(partition.nodes(newData))
+    .enter().append("g");
+
+  var path = g.append("path")
+    .attr("d", arc)
+    .style("fill", function(d) { return color((d.children ? d : d.parent).name); })
+    .on("click", click);
+
+  var text = g.append("text")
+    .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")rotate(" + computeTextRotation(d) + ")"; })
+    .attr('text-anchor', function (d) { return computeTextRotation(d) > 180 ? "end" : "start"; })
+	.attr("dx", "8") // margin
+    .attr("dy", "2em") // vertical-align;
+		 .on("mouseover", function(d){
+			 if (d.test != null) 
+			 {
+				 tooltip.text(d.test +"   " + d.test2); return tooltip.style("visibility", "visible")
+			 };})
+	 .on("mousemove", function(){return tooltip.style("top", (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");})
+      .on("mouseout", function(){return tooltip.style("visibility", "hidden");});
+
+
+
+	  text.append("tspan")
+      .attr("x", 0)
+      .text(function(d) { return d.depth ? d.name.split(" ")[0] : ""; });
+  text.append("tspan")
+      .attr("x", 0)
+      .attr("dy", "1em")
+      .text(function(d) { return d.depth ? d.name.split(" ")[1] || "" : ""; });
+	    text.append("tspan")
+      .attr("x", 0)
+      .attr("dy", "1em")
+      .text(function(d) { return d.depth ? d.name.split(" ")[2] || "" : ""; });
+
+	
+	
+  function click(d) {
+    // fade out all text elements
+    text.transition().attr("opacity", 0);
+
+    path.transition()
+      .duration(750)
+      .attrTween("d", arcTween(d))
+      .each("end", function(e, i) {
+          // check if the animated element's data e lies within the visible angle span given in d
+          if (e.x >= d.x && e.x < (d.x + d.dx)) {
+            // get a selection of the associated text element
+            var arcText = d3.select(this.parentNode).select("text");
+            // fade in the text element and recalculate positions
+            arcText.transition().duration(750)
+              .attr("opacity", 1)
+               .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")rotate(" + computeTextRotation(d) + ")"; })
+              .attr("x", function(d) { return y(d.y); });
+          }
+      });
+  }
+
+d3.select(self.frameElement).style("height", height + "px");
+
+// Interpolate the scales!
+function arcTween(d) {
+  var xd = d3.interpolate(x.domain(), [d.x, d.x + d.dx]),
+      yd = d3.interpolate(y.domain(), [d.y, 1]),
+      yr = d3.interpolate(y.range(), [d.y ? 20 : 0, radius]);
+  return function(d, i) {
+    return i
+        ? function(t) { return arc(d); }
+        : function(t) { x.domain(xd(t)); y.domain(yd(t)).range(yr(t)); return arc(d); };
+  };
+}
+
+   function computeTextRotation(d) {
+        var ang = (x(d.x + d.dx / 2) - Math.PI / 2) / Math.PI * 180;
+        return (ang > 90) ? 180 + ang : ang;
+    }
+///
+
+  
+
+});
+}
+}
+ </script>
+
+
+</body>
+
+</html>
