@@ -1,0 +1,12 @@
+@charset "UTF-8";
+/* CSS Document */
+
+form {
+	position: left;
+	right: 10px;
+	top: 10px;
+}
+text {
+	font: 10px sans-serif;
+	cursor: pointer;
+} 

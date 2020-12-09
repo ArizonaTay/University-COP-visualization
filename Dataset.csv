@@ -1,0 +1,89 @@
+University,Faculty ,Course,JC CutOfPoint 10Percentile,JC CutOfPoint 90Percentile,Poly CutOfPoint 10Percentile,Poly Cut off point 90 percentile,Require Interview or test,Type,Minimum Age required(Part time Degree Only),Qualification required(Part time Degree Only),Work Experience(Part time Degree Only),Course Fees(Per Year) SGD,Intake
+NUS,Faculty of Law,Law,AAA/A,AAA/A,3.83,3.99,Y,F,N/A,N/A,N/A,"SGD 12,500",237
+NUS,Faculty of Medicine,Medicine,AAA/A,AAA/A,3.92,4,Y,F,N/A,N/A,N/A,"SGD 26,400",302
+NUS,Faculty of Medicine,Nursing,CCC/B,AAA/A,3.45,3.92,Y,F,N/A,N/A,N/A,"SGD 8,950",155
+NUS,Faculty of Dentistry,Dentistry,AAA/A,AAA/A,3.96,3.96,Y,F,N/A,N/A,N/A,"SGD 26,400",54
+NUS,Faculty of Design & Environment,Architecture,ABB/B,AAA/A,3.72,3.98,Y,F,N/A,N/A,N/A,"SGD 8,700",149
+NUS,Faculty of Design & Environment,Industrial Design,BBB/B,AAA/A,3.59,3.91,Y,F,N/A,N/A,N/A,"SGD 8,050",41
+NUS,Faculty of Design & Environment,Project & Facilities Management,BBC/C,AAB/B,3.74,3.9,N,F,N/A,N/A,N/A,"SGD 8,050",127
+NUS,Faculty of Design & Environment,Real Estate,BBC/C,AAB/B,3.71,3.92,N,F,N/A,N/A,N/A,"SGD 8,050",140
+NUS,Faculty of Engineering,Engineering,BBC/B,AAA/A,3.82,3.93,N,F,N/A,N/A,N/A,"SGD 8,050",57
+NUS,Faculty of Engineering,Biomedical Engineering,BBB/C,AAA/A,3.87,3.99,N,F,N/A,N/A,N/A,"SGD 8,050",133
+NUS,Faculty of Engineering,Chemical Engineering,AAB/B,AAA/A,3.72,3.98,N,F,N/A,N/A,N/A,"SGD 8,050",277
+NUS,Faculty of Engineering,Civil Engineering,BBC/B,AAA/A,3.7,3.98,N,F,N/A,N/A,N/A,"SGD 8,050",130
+NUS,Faculty of Engineering,Electrical Engineering,BBB/C,AAA/A,3.69,3.93,N,F,N/A,N/A,N/A,"SGD 8,050",209
+NUS,Faculty of Engineering,Environmental Engineering,BBC/B,AAA/A,3.69,3.93,N,F,N/A,N/A,N/A,"SGD 8,050",56
+NUS,Faculty of Engineering,Engineering Science,BBB/C,AAA/A,3.92,3.96,N,F,N/A,N/A,N/A,"SGD 8,050",31
+NUS,Faculty of Engineering,Industrial & Systems Engineering,ABB/C,AAA/A,#,#,N,F,N/A,N/A,N/A,"SGD 8,050",95
+NUS,Faculty of Engineering,Materials Science & Engineering,BBC/B,AAA/A,3.94,4,N,F,N/A,N/A,N/A,"SGD 8,050",72
+NUS,Faculty of Engineering,Mechanical Engineering,BBB/B,AAA/A,3.83,3.99,N,F,N/A,N/A,N/A,"SGD 8,050",311
+NUS,Faculty of Engineering,Mechanical Engineering (Aeronautical),AAA/A,AAA/A,N/A,N/A,N,F,N/A,N/A,N/A,"SGD 8,050",#
+NUS,Faculty of Computing,Computing (Business Analytics),AAA/A,AAA/A,3.81,3.93,N,F,N/A,N/A,N/A,"SGD 8,050",#
+NUS,Faculty of Computing,Computing (Computer Science),AAA/A,AAA/A,3.74,4,N,F,N/A,N/A,N/A,"SGD 8,050",#
+NUS,Faculty of Computing,Computing (Information Security),AAA/B,AAA/A,N/A,N/A,N,F,N/A,N/A,N/A,"SGD 8,050",#
+NUS,Faculty of Computing,Computing (Information Systems),AAA/B,AAA/A,3.67,3.96,N,F,N/A,N/A,N/A,"SGD 8,050",#
+NUS,Faculty of Engineering & School of Computing,Computer Engineering ,BBB/B,AAA/A,3.77,3.97,N,F,N/A,N/A,N/A,"SGD 8,050",#
+NUS,Faculty of Science,Pharmacy,AAA/A,AAA/A,3.92,4,N,F,N/A,N/A,N/A,"SGD 8,900",92
+NUS,Faculty of Science,Science (Chemistry),N/A,N/A,3.74,3.96,N,F,N/A,N/A,N/A,"SGD 8,050",#
+NUS,Faculty of Science,Science (Computational Biology),N/A,N/A,#,#,N,F,N/A,N/A,N/A,"SGD 8,050",#
+NUS,Faculty of Science,Applied Science (Food Science & Technology),N/A,N/A,3.75,3.92,N,F,N/A,N/A,N/A,"SGD 8,050",#
+NUS,Faculty of Science,Science (Life Sciences),N/A,N/A,3.74,3.98,N,F,N/A,N/A,N/A,"SGD 8,050",#
+NUS,Faculty of Science,Science (Physics),N/A,N/A,3.77,3.86,N,F,N/A,N/A,N/A,"SGD 8,050",#
+NUS,Faculty of Science,Science,BBB/C,AAA/A,N/A,N/A,N,F,N/A,N/A,N/A,"SGD 8,050",#
+NUS,Faculty of Business,Business Admin,AAA/C,AAA/A,3.85,3.98,N,F,N/A,N/A,N/A,"SGD 9,450",509
+NUS,Faculty of Business,Business Admin (Accountancy),AAA/A,AAA/A,3.87,4,N,F,N/A,N/A,N/A,"SGD 9,450",243
+NUS,Faculty of Arts & Social Sciences,Arts & Social Sciences,BBB/B,AAA/A,3.74,3.94,N,F,N/A,N/A,N/A,"SGD 8,050",#
+NUS,Faculty of Arts & Social Sciences,Arts & Social Sciences (MT related),BBC/C,AAA/B,N/A,N/A,N,F,N/A,N/A,N/A,"SGD 8,050",#
+NUS,Faculty of Arts & Social Science and Faculty of Science,Environmental Studies,AAA/C,AAA/A,3.83,3.98,N,F,N/A,N/A,N/A,"SGD 8,050",52
+NTU,Faculty of Medicine,Medicine,AAA/A,AAA/A,#,#,Y,F,N/A,N/A,N/A,"SGD 33,200",108
+NTU,College of Engineering,Renaissance Engineering,AAA/A,AAA/A,#,#,Y,F,N/A,N/A,N/A,"SGD 17,500",68
+NTU,College of Engineering,Aerospace Engineering, AAA/B ,AAA/A,3.74,3.98,N,F,N/A,N/A,N/A,"SGD 8,050",130
+NTU,College of Engineering,Bioengineering,BBC/D,AAA/A,3.45,3.9,N,F,N/A,N/A,N/A,"SGD 8,050",78
+NTU,College of Engineering,Chemical & Biomolecular Engineering,AAA/C ,AAA/A,3.85,3.97,N,F,N/A,N/A,N/A,"SGD 8,050",143
+NTU,College of Engineering,Civil Engineering ,CCC/D,AAA/A,3.73,3.99,N,F,N/A,N/A,N/A,"SGD 8,050",136
+NTU,College of Engineering,Computer Engineering,ABC/C,AAA/A,3.56,3.99,N,F,N/A,N/A,N/A,"SGD 9,250",86
+NTU,College of Engineering,Computer Science ,ABC/C,AAA/A,3.61,3.96,N,F,N/A,N/A,N/A,"SGD 8,050",263
+NTU,College of Engineering,Electrical & Electronic Engineering,CCC/C ,AAA/A,3.47,3.96,N,F,N/A,N/A,N/A,"SGD 8,050",597
+NTU,College of Engineering,Engineering ,BCC/C ,AAC/B,#,#,N,F,N/A,N/A,N/A,"SGD 8,050",55
+NTU,College of Engineering,Environmental Engineering,BBC/D ,AAA/A,3.64,3.93,N,F,N/A,N/A,N/A,"SGD 8,050",46
+NTU,College of Engineering,Information Engineering & Media,BCC/C ,AAA/A,3.48,3.92,N,F,N/A,N/A,N/A,"SGD 8,050",96
+NTU,College of Engineering,Maritime Studies,BBC/C , AAA/C,3.78,3.98,N,F,N/A,N/A,N/A,"SGD 8,050",84
+NTU,College of Engineering,Materials Engineering,BCC/D,AAA/A,3.51,3.93,N,F,N/A,N/A,N/A,"SGD 8,050",201
+NTU,College of Engineering,Mechanical Engineering ,BCC/C ,AAA/A,3.44,3.93,N,F,N/A,N/A,N/A,"SGD 8,050",485
+NTU,College of Science,Biological Sciences,ABC/C,AAA/A,3.68,3.95,Y,F,N/A,N/A,N/A,"SGD 8,050",250
+NTU,College of Science,Chemistry & Biological Chemistry ,BCC/C ,AAA/A,3.5,3.91,N,F,N/A,N/A,N/A,"SGD 8,050",244
+NTU,College of Science,Environmental Earth Systems Science,AAA/A ,AAA/A ,#,#,Y,F,N/A,N/A,N/A,"SGD 8,050",34
+NTU,College of Science,Mathematical Sciences,BCC/D,AAA/B,3.55,3.97,N,F,N/A,N/A,N/A,"SGD 8,050",169
+NTU,College of Science,Mathematics & Economics,BCC/B,AAB/B,#,#,N,F,N/A,N/A,N/A,"SGD 8,050",94
+NTU,College of Science,Physics / Applied Physics ,CCC/D,AAA/A,3.44,3.91,N,F,N/A,N/A,N/A,"SGD 8,050",121
+NTU,Nanyang Business School (College of Business),Accountancy,AAB/B ,AAA/A,3.8,3.97,Y,F,N/A,N/A,N/A,"SGD 9,250",618
+NTU,Nanyang Business School (College of Business),Business,AAB/C ,AAA/A,3.81,3.97,Y,F,N/A,N/A,N/A,"SGD 9,250",626
+NTU,"College of Humanities, Arts, & Social Sciences",Double Major Programmes,AAA/B,AAA/A,3.67,3.96,Y,F,N/A,N/A,N/A,"SGD 8,050",29
+NTU,"College of Humanities, Arts, & Social Sciences","Art, Design & Media",CCD/C ,AAA/B,3.23,3.78,Y,F,N/A,N/A,N/A,"SGD 8,050",168
+NTU,"College of Humanities, Arts, & Social Sciences",Chinese,BCC/C, AAC/C,3.46,3.83,N,F,N/A,N/A,N/A,"SGD 8,050",99
+NTU,"College of Humanities, Arts, & Social Sciences",Communication Studies,AAC/C,AAA/A,3.71,3.95,Y,F,N/A,N/A,N/A,"SGD 8,050",190
+NTU,"College of Humanities, Arts, & Social Sciences",Economics,ABC/C ,AAA/A,3.69,3.92,N,F,N/A,N/A,N/A,"SGD 8,050",115
+NTU,"College of Humanities, Arts, & Social Sciences",English,BCC/C,AAA/A,3.35,3.65,Y,F,N/A,N/A,N/A,"SGD 8,050",123
+NTU,"College of Humanities, Arts, & Social Sciences",History,BCC/C,AAA/B,3.41,3.72,Y,F,N/A,N/A,N/A,"SGD 8,050",66
+NTU,"College of Humanities, Arts, & Social Sciences",Linguistics & Multilingual Studies,BBC/C ,AAA/A,3.53,3.74,Y,F,N/A,N/A,N/A,"SGD 8,050",79
+NTU,"College of Humanities, Arts, & Social Sciences",Philosophy,BCC/B,AAA/C,#,#,Y,F,N/A,N/A,N/A,"SGD 8,050",42
+NTU,"College of Humanities, Arts, & Social Sciences",Psychology ,ABC/B,AAA/A,3.69,3.94,N,F,N/A,N/A,N/A,"SGD 8,050",127
+NTU,"College of Humanities, Arts, & Social Sciences",Public Policy & Global Affairs,BBC/C,AAA/A,3.64,3.84,N,F,N/A,N/A,N/A,"SGD 8,050",52
+NTU,"College of Humanities, Arts, & Social Sciences",Sociology,BBC/B ,AAA/A,3.67,3.97,N,F,N/A,N/A,N/A,"SGD 8,050",86
+NTU,Sport Science & Management,Sport Science & Management ,BBC/B,AAA/B,3.61,3.92,N,F,N/A,N/A,N/A,"SGD 8,050",77
+NTU,National Institute of Education,Arts (Education),ABC/B ,AAA/A,3.59,3.84,Y,F,N/A,N/A,N/A,"SGD 8,050",33
+NTU,National Institute of Education,Science (Education),AAC/C ,AAA/A,3.78,3.9,Y,F,N/A,N/A,N/A,"SGD 8,050",39
+SMU,Bachelor of Accountancy,Bachelor of Accountancy,AAB/B,AAA/A,3.72,3.96,Y,F,N/A,N/A,N/A,"SGD 11,300",292
+SMU,Bachelor of Business Management,Bachelor of Business Management,ABB/C,AAA/A,3.72,3.94,Y,F,N/A,N/A,N/A,"SGD 11,300",760
+SMU,Bachelor of Laws,Bachelor of Laws,AAA/A,AAA/A,#,#,Y,F,N/A,N/A,N/A,"SGD 12,500",163
+SMU,Bachelor of Science (Economics),Bachelor of Science (Economics),BBC/B,AAA/A,3.72,3.95,Y,F,N/A,N/A,N/A,"SGD 11,300",252
+SMU,Bachelor of Science (Information Systems),Bachelor of Science (Information Systems),BBC/C,AAA/A,3.54,3.96,Y,F,N/A,N/A,N/A,"SGD 11,300",252
+SMU,Bachelor of Social Science,Bachelor of Social Science,BBC/B,AAA/A,3.71,3.96,Y,F,N/A,N/A,N/A,"SGD 11,300",236
+NUS,Bachelor of Technology Programmes,Chemical Engineering,N/A,N/A,N/A,N/A,N/A,P,21,Polytechnic Diploma in a relevant field of Engineering or equivalent local / foreign qualifications.,2,445 per academic unit,N/A
+NUS,Bachelor of Technology Programmes, Civil Engineering,N/A,N/A,N/A,N/A,N/A,P,21,Polytechnic Diploma in a relevant field of Engineering or equivalent local / foreign qualifications.,2,445 per academic unit,N/A
+NUS,Bachelor of Technology Programmes,Electronics Engineering,N/A,N/A,N/A,N/A,N/A,P,21,Polytechnic Diploma in a relevant field of Engineering or equivalent local / foreign qualifications.,2,445 per academic unit,N/A
+NUS,Bachelor of Technology Programmes,Industrial and Management Engineering,N/A,N/A,N/A,N/A,N/A,P,21,Polytechnic Diploma in a relevant field of Engineering or equivalent local / foreign qualifications.,2,445 per academic unit,N/A
+NUS,Bachelor of Technology Programmes,Mechanical Engineering,N/A,N/A,N/A,N/A,N/A,P,21,Polytechnic Diploma in a relevant field of Engineering or equivalent local / foreign qualifications.,2,445 per academic unit,N/A
+NTU,Bachelor of Engineering,Electrical & Electronic Engineering,N/A,N/A,N/A,N/A,N/A,P,0,iploma in Electrical/Electronic Engineering from one of the local polytechnics in Singapore,0,"SGD 2,200.00",N/A
+NTU,Bachelor of Engineering,Mechanical Engineering,N/A,N/A,N/A,N/A,N/A,P,0, polytechnic diplomas or equivalent qualifications,0,"SGD 2,200.00",N/A
+NTU,Bachelor of Engineering,Computer Science,N/A,N/A,N/A,N/A,N/A,P,0, polytechnic diplomas or equivalent qualifications,0,"SGD 2,200.00",N/A
